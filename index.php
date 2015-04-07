@@ -48,6 +48,7 @@ $helper = new Facebook\FacebookRedirectLoginHelper('http://localhost/');
 //			{
 //				$session=$helper->getSessionFromRedirect();
 //			}
+			echo "je suis ici";
 		?>
 		<script>
 			window.fbAsyncInit = function() {
