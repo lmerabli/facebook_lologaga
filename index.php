@@ -42,7 +42,8 @@ $helper = new Facebook\FacebookRedirectLoginHelper('http://facebooklologaga.hero
 		<?php
 			$loginUrl = $helper->getLoginUrl();
 		//	echo 'non connecté. Connectez-vous <a href="'.$loginUrl.'">Connection</a>';
-			$session = getSessionFromRedirect();
+			$session = $helper->getSessionFromRedirect();
+			var_dump($session);
 			if($session){
 				try{
 					$user_profile = (new FacebookRequest( $session,'GET','/me')) ->execute()->getGraphObject(GraphUser::className());
