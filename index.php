@@ -22,7 +22,7 @@ use Facebook\FacebookRequestException;
 const APPID ="394290144088861";
 const APPSECRET ="be275e0e85053612a3d5dcc67c063bbe";
 Facebook\FacebookSession::setDefaultApplication(APPID, APPSECRET);
-$helper = new Facebook\FacebookRedirectLoginHelper('http://localhost/');
+$helper = new Facebook\FacebookRedirectLoginHelper('http://facebooklologaga.herokuapp.com/');
 ?>
 <!Doctype html>
 <html>
@@ -41,7 +41,7 @@ $helper = new Facebook\FacebookRedirectLoginHelper('http://localhost/');
 		</div>
 		<?php
 			$loginUrl = $helper->getLoginUrl();
-			echo 'non connecté. Connectez-vous <a href="'.$loginUrl.'">Connection</a>';
+		//	echo 'non connecté. Connectez-vous <a href="'.$loginUrl.'">Connection</a>';
 			if($session){
 				try{
 					$user_profile = (new FacebookRequest( $session,'GET','/me')) ->execute()->getGraphObject(GraphUser::className());
