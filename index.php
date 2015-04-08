@@ -14,6 +14,10 @@ require './facebook-php-sdk-v4-4.0-dev/autoload.php';
 
 use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
+use Facebook\FacebookRequest;
+use Facebook\GraphUser;
+use Facebook\FacebookRequestException;
+
 
 const APPID ="394290144088861";
 const APPSECRET ="be275e0e85053612a3d5dcc67c063bbe";
@@ -38,6 +42,19 @@ $helper = new Facebook\FacebookRedirectLoginHelper('http://localhost/');
 		<?php
 			$loginUrl = $helper->getLoginUrl();
 			echo 'non connecté. Connectez-vous <a href="'.$loginUrl.'">Connection</a>';
+			if($session){
+				try{
+					$user_profile = (new FacebookRequest( $session,'GET','/me')) ->execute()->getGraphObject(GraphUser::className());
+					echo "Name:". $user_profile->getName();
+
+
+				} catch (Exception $ex) {
+
+				}
+
+			}  else {
+				echo 'non connecté. Connectez-vous <a href="'.$loginUrl.'">Connect</a>';
+			}
 //			if(isset($_SESSION)&& isset($_SESSION['fb_token']))
 //			{
 //				$session = new FacebookSession($_SESSION['fb_token']);
